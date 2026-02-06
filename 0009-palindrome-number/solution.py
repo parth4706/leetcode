@@ -4,9 +4,8 @@ class Solution(object):
         :type x: int
         :rtype: bool
         """
-        x = str(x)
-        rev = x[::-1]
-        if x == rev:
-            return True
-        else:
+        if x <0:
             return False
+        if str(x)==str(x)[::-1]:
+            return True
+        return False
