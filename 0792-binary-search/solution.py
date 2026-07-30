@@ -1,18 +1,24 @@
-class Solution:
-    def search(self, nums: List[int], target: int) -> int:
-        left = 0
-        seen = set()
-        right = len(nums)
-        count = 0
-        while left < right and count < len(nums) / 2 +1:
-            m = (left + right)//2
+class Solution(object):
+    def search(self, nums, target):
+        """
+        :type nums: List[int]
+        :type target: int
+        :rtype: int
+        """
+        l = 0
+        r = len(nums) - 1
+        res = [-1]
+        def f(l,r):
+            m = (l + r)//2
+            if l>r:
+                return
             if nums[m] == target:
-                return m
-            elif nums[m] < target:
-                left = m
+                res[0] = m
+                return 
+            elif nums[m]> target:
+                f(l,m-1)
             else:
-                right = m
-            count += 1            
-        
-        return -1
-
+                f(m+1,r)
+        f(l,r)  
+        return res[0]
+                
